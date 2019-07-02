@@ -85,49 +85,49 @@ public class ShowD extends AppCompatActivity {
     }
 
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if(resultCode != Activity.RESULT_OK)
-        {
-            Log.d("MSG","COULD NOT GET A GOOD RESULT.");
-            if(data==null)
-                return;
-            //Getting the passed result
-            String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
-            if( result!=null)
-            {
-                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                alertDialog.setTitle("Scan Error");
-                alertDialog.setMessage("QR Code could not be scanned");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
-            return;
-
-        }
-        if(requestCode == REQUEST_CODE_QR_SCAN)
-        {
-            if(data==null)
-                return;
-            //Getting the passed result
-            String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
-            Log.d("MSG","Have scan result in your app activity :"+ result);
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("Scan result");
-            alertDialog.setMessage(result);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-
-        }
-    }
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        if(resultCode != Activity.RESULT_OK)
+//        {
+//            Log.d("MSG","COULD NOT GET A GOOD RESULT.");
+//            if(data==null)
+//                return;
+//            //Getting the passed result
+//            String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
+//            if( result!=null)
+//            {
+//                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//                alertDialog.setTitle("Scan Error");
+//                alertDialog.setMessage("QR Code could not be scanned");
+//                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                alertDialog.show();
+//            }
+//            return;
+//
+//        }
+//        if(requestCode == REQUEST_CODE_QR_SCAN)
+//        {
+//            if(data==null)
+//                return;
+//            //Getting the passed result
+//            String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
+//            Log.d("MSG","Have scan result in your app activity :"+ result);
+//            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//            alertDialog.setTitle("Scan result");
+//            alertDialog.setMessage(result);
+//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                    new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//            alertDialog.show();
+//
+//        }
+//    }
 }

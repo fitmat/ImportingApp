@@ -1,5 +1,6 @@
 package com.fitmat.exportapp;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,20 +21,27 @@ public class HelloWorld extends AppCompatActivity {
     private static final int REQUEST_CODE_QR_SCAN = 101;
 
 
+    public static String address="";
+
+    public static String getAddress() {
+        return address;
+    }
+
+    public static void setAddress(String address) {
+        HelloWorld.address = address;
+    }
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello_world);
 
         Toast.makeText(HelloWorld.this,"Resultstarted",Toast.LENGTH_SHORT).show();
-//
-//        @Override
-//        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//            // Forward results to EasyPermissions
-//            EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-//        }
 
         Intent i = new Intent(HelloWorld.this, QrCodeActivity.class);
         startActivityForResult( i,REQUEST_CODE_QR_SCAN);
@@ -52,16 +60,21 @@ public class HelloWorld extends AppCompatActivity {
             String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
             if( result!=null)
             {
-                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                alertDialog.setTitle("Scan Error");
-                alertDialog.setMessage("QR Code could not be scanned");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+//                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//                alertDialog.setTitle("Scan Error");
+//                alertDialog.setMessage("QR Code could not be scanned");
+//                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+////
+////                Intent i = new Intent(this, com.fitmat.importingapp.MainActivity.class);
+////                String strName = null;
+////                i.putExtra("STRING_I_NEED", strName);
+//
+//                alertDialog.show();
             }
             return;
 
@@ -72,21 +85,18 @@ public class HelloWorld extends AppCompatActivity {
                 return;
             //Getting the passed result
             String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
+
             Log.d("MSG","Have scan result in your app activity :"+ result);
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("Scan result");
-            alertDialog.setMessage(result);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("QR-RESULT", result);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+
+
 
             this.finish();
 
-//            Intent i = new Intent(HelloWorld.this, MainActivity.class);
+
 
 
 

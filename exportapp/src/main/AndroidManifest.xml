@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fitmat.exportapp">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application>
-        <activity android:name=".HelloWorld"></activity>
+        <activity android:name=".MyCustomObject"></activity>
+        <activity android:name=".HelloWorld" />
     </application>
 
 </manifest>
